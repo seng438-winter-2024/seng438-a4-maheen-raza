@@ -1,0 +1,659 @@
+{
+  "id": "c112348d-3523-44fb-bfee-e6aadb57db46",
+  "version": "2.0",
+  "name": "SENG439-Assignment4-Ebay",
+  "url": "https://www.ebay.ca",
+  "tests": [{
+    "id": "f77da5fd-6a4b-421c-b361-cbfc8eb0f7ae",
+    "name": "search-functionality",
+    "commands": [{
+      "id": "a7046bbe-018d-4fa1-937d-38f0e8704353",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0cd2f3fc-8143-4921-8b20-2e11282ec85c",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "915x607",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "049e5aa0-d4d0-48d0-8ed4-869b021131a4",
+      "comment": "",
+      "command": "click",
+      "target": "id=gh-ac",
+      "targets": [
+        ["id=gh-ac", "id"],
+        ["name=_nkw", "name"],
+        ["css=#gh-ac", "css:finder"],
+        ["xpath=//input[@id='gh-ac']", "xpath:attributes"],
+        ["xpath=//div[@id='gh-ac-box2']/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f79ebe5c-d9a2-41f1-927e-56d607cb7302",
+      "comment": "",
+      "command": "type",
+      "target": "id=gh-ac",
+      "targets": [
+        ["id=gh-ac", "id"],
+        ["name=_nkw", "name"],
+        ["css=#gh-ac", "css:finder"],
+        ["xpath=//input[@id='gh-ac']", "xpath:attributes"],
+        ["xpath=//div[@id='gh-ac-box2']/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "levis jeans"
+    }, {
+      "id": "735d61b4-5fed-451f-b479-489af789f7aa",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=gh-ac",
+      "targets": [
+        ["id=gh-ac", "id"],
+        ["name=_nkw", "name"],
+        ["css=#gh-ac", "css:finder"],
+        ["xpath=//input[@id='gh-ac']", "xpath:attributes"],
+        ["xpath=//div[@id='gh-ac-box2']/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }]
+  }, {
+    "id": "1fab3292-b803-4ccb-9f88-afd612469bb3",
+    "name": "add-to-cart-functionality",
+    "commands": [{
+      "id": "a033b29b-6cad-4195-9493-27e82cc96198",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "adff4f70-e3f6-4bb0-bf3e-57082555d1f4",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1287x607",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "61714df8-0740-4da4-b319-897f9dd274db",
+      "comment": "",
+      "command": "click",
+      "target": "id=gh-ac",
+      "targets": [
+        ["id=gh-ac", "id"],
+        ["name=_nkw", "name"],
+        ["css=#gh-ac", "css:finder"],
+        ["xpath=//input[@id='gh-ac']", "xpath:attributes"],
+        ["xpath=//div[@id='gh-ac-box2']/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "39c6a1bf-260f-46f4-af0b-ce09e5625ecb",
+      "comment": "",
+      "command": "type",
+      "target": "id=gh-ac",
+      "targets": [
+        ["id=gh-ac", "id"],
+        ["name=_nkw", "name"],
+        ["css=#gh-ac", "css:finder"],
+        ["xpath=//input[@id='gh-ac']", "xpath:attributes"],
+        ["xpath=//div[@id='gh-ac-box2']/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "levis jeans"
+    }, {
+      "id": "82fdc7d2-8b99-497b-baca-c588eb872f93",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=gh-ac",
+      "targets": [
+        ["id=gh-ac", "id"],
+        ["name=_nkw", "name"],
+        ["css=#gh-ac", "css:finder"],
+        ["xpath=//input[@id='gh-ac']", "xpath:attributes"],
+        ["xpath=//div[@id='gh-ac-box2']/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "316f8183-9003-4c2e-85f9-7d6f5b4b26b0",
+      "comment": "",
+      "command": "click",
+      "target": "css=#item5d7a489a38 img",
+      "targets": [
+        ["css=#item5d7a489a38 img", "css:finder"],
+        ["xpath=//img[@alt='LEVI`S 501 JEANS GRADE A VINTAGE STRAIGHT LEG W30 W32 W33 W34 W36 W38 W40']", "xpath:img"],
+        ["xpath=//li[@id='item5d7a489a38']/div/div/div/a/div/img", "xpath:idRelative"],
+        ["xpath=//li[3]/div/div/div/a/div/img", "xpath:position"]
+      ],
+      "value": "",
+      "opensWindow": true,
+      "windowHandleName": "win9214",
+      "windowTimeout": 2000
+    }, {
+      "id": "de0482f0-e395-42cf-9b3a-352af7789c96",
+      "comment": "",
+      "command": "selectWindow",
+      "target": "handle=${win9214}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0e50f0a6-8902-4319-84b7-435515700972",
+      "comment": "",
+      "command": "click",
+      "target": "id=x-msku__select-box-1000",
+      "targets": [
+        ["id=x-msku__select-box-1000", "id"],
+        ["css=#x-msku__select-box-1000", "css:finder"],
+        ["xpath=//select[@id='x-msku__select-box-1000']", "xpath:attributes"],
+        ["xpath=//div[@id='mainContent']/div/div[5]/div/label/span[2]/select", "xpath:idRelative"],
+        ["xpath=//span[2]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5c53a708-b0e5-45be-8e35-da1d116b5319",
+      "comment": "",
+      "command": "select",
+      "target": "id=x-msku__select-box-1000",
+      "targets": [],
+      "value": "label=Dark Blue"
+    }, {
+      "id": "a92d95cb-b26a-4131-a696-bc8dc8a17a4c",
+      "comment": "",
+      "command": "runScript",
+      "target": "window.scrollTo(0,192)",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d5daa220-1adc-4a48-a83f-e66cd5b52e17",
+      "comment": "",
+      "command": "click",
+      "target": "id=x-msku__select-box-1001",
+      "targets": [
+        ["id=x-msku__select-box-1001", "id"],
+        ["css=#x-msku__select-box-1001", "css:finder"],
+        ["xpath=//select[@id='x-msku__select-box-1001']", "xpath:attributes"],
+        ["xpath=//div[@id='mainContent']/div/div[5]/div[2]/label/span[2]/select", "xpath:idRelative"],
+        ["xpath=//div[2]/label/span[2]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b4a4341c-722a-4d02-a6dc-220590e8429c",
+      "comment": "",
+      "command": "click",
+      "target": "id=x-msku__select-box-1001",
+      "targets": [
+        ["id=x-msku__select-box-1001", "id"],
+        ["css=#x-msku__select-box-1001", "css:finder"],
+        ["xpath=//select[@id='x-msku__select-box-1001']", "xpath:attributes"],
+        ["xpath=//div[@id='mainContent']/div/div[5]/div[2]/label/span[2]/select", "xpath:idRelative"],
+        ["xpath=//div[2]/label/span[2]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "938837e9-601b-4b88-9cec-17d8e6252f91",
+      "comment": "",
+      "command": "select",
+      "target": "id=x-msku__select-box-1001",
+      "targets": [],
+      "value": "label=36 in."
+    }, {
+      "id": "02f28641-7d1a-419a-818f-b42b4689c042",
+      "comment": "",
+      "command": "click",
+      "target": "id=x-msku__select-box-1002",
+      "targets": [
+        ["id=x-msku__select-box-1002", "id"],
+        ["css=#x-msku__select-box-1002", "css:finder"],
+        ["xpath=//select[@id='x-msku__select-box-1002']", "xpath:attributes"],
+        ["xpath=//div[@id='mainContent']/div/div[5]/div[3]/label/span[2]/select", "xpath:idRelative"],
+        ["xpath=//div[3]/label/span[2]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dfdf0d89-36b7-4113-b94c-60427fcbe5a5",
+      "comment": "",
+      "command": "select",
+      "target": "id=x-msku__select-box-1002",
+      "targets": [],
+      "value": "label=32L"
+    }, {
+      "id": "6fc2a9e3-11cb-4505-b273-9a5b650deb31",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Add to cart",
+      "targets": [
+        ["linkText=Add to cart", "linkText"],
+        ["css=.x-atc-action > .ux-call-to-action", "css:finder"],
+        ["xpath=//div[@id='mainContent']/div[2]/div/div/div[2]/ul/li[2]/div/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'https://cart.payments.ebay.ca/sc/add')]", "xpath:href"],
+        ["xpath=//li[2]/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Add to cart')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e2c8665f-4a08-4294-a32c-aa18796c85e4",
+      "comment": "",
+      "command": "click",
+      "target": "id=gh-cart-n",
+      "targets": [
+        ["id=gh-cart-n", "id"],
+        ["css=#gh-cart-n", "css:finder"],
+        ["xpath=//i[@id='gh-cart-n']", "xpath:attributes"],
+        ["xpath=//li[@id='gh-minicart-hover']/div/a/i", "xpath:idRelative"],
+        ["xpath=//li[6]/div/a/i", "xpath:position"],
+        ["xpath=//i[contains(.,'1')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "8a022247-c033-494a-8015-78b8a4fc35e3",
+    "name": "search-functionality-with-incorrect-spelling",
+    "commands": [{
+      "id": "745ace19-aa7c-4ddb-8d71-9c0fc4e195be",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8169340e-d313-49bc-b928-082e0f1414c1",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x886",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8bfda1a4-4cae-4c39-a104-d44a56207933",
+      "comment": "",
+      "command": "click",
+      "target": "id=gh-ac",
+      "targets": [
+        ["id=gh-ac", "id"],
+        ["name=_nkw", "name"],
+        ["css=#gh-ac", "css:finder"],
+        ["xpath=//input[@id='gh-ac']", "xpath:attributes"],
+        ["xpath=//div[@id='gh-ac-box2']/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4ba251c3-d271-4008-b2c1-cb858fa2190a",
+      "comment": "",
+      "command": "type",
+      "target": "id=gh-ac",
+      "targets": [
+        ["id=gh-ac", "id"],
+        ["name=_nkw", "name"],
+        ["css=#gh-ac", "css:finder"],
+        ["xpath=//input[@id='gh-ac']", "xpath:attributes"],
+        ["xpath=//div[@id='gh-ac-box2']/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "leivs jeans"
+    }, {
+      "id": "46743c04-eb60-48ca-bfd4-43ec4484ab02",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=gh-ac",
+      "targets": [
+        ["id=gh-ac", "id"],
+        ["name=_nkw", "name"],
+        ["css=#gh-ac", "css:finder"],
+        ["xpath=//input[@id='gh-ac']", "xpath:attributes"],
+        ["xpath=//div[@id='gh-ac-box2']/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "16d2cafb-a9e2-4903-98e9-267f049ee60c",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=#item5d7a489a38 img",
+      "targets": [
+        ["css=#item5d7a489a38 img", "css:finder"],
+        ["xpath=//img[@alt='LEVI`S 501 JEANS GRADE A VINTAGE STRAIGHT LEG W30 W32 W33 W34 W36 W38 W40']", "xpath:img"],
+        ["xpath=//li[@id='item5d7a489a38']/div/div/div/a/div/img", "xpath:idRelative"],
+        ["xpath=//li[3]/div/div/div/a/div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "53dd11c9-b764-41a2-b1f8-6d35dfe1926c",
+      "comment": "",
+      "command": "click",
+      "target": "css=#item5d7a489a38 img",
+      "targets": [
+        ["css=#item5d7a489a38 img", "css:finder"],
+        ["xpath=//img[@alt='LEVI`S 501 JEANS GRADE A VINTAGE STRAIGHT LEG W30 W32 W33 W34 W36 W38 W40']", "xpath:img"],
+        ["xpath=//li[@id='item5d7a489a38']/div/div/div/a/div/img", "xpath:idRelative"],
+        ["xpath=//li[3]/div/div/div/a/div/img", "xpath:position"]
+      ],
+      "value": "",
+      "opensWindow": true,
+      "windowHandleName": "win438",
+      "windowTimeout": 2000
+    }, {
+      "id": "a88539cc-0735-4b42-a829-50e41a167a2f",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=#item5d7a489a38 img",
+      "targets": [
+        ["css=#item5d7a489a38 img", "css:finder"],
+        ["xpath=//img[@alt='LEVI`S 501 JEANS GRADE A VINTAGE STRAIGHT LEG W30 W32 W33 W34 W36 W38 W40']", "xpath:img"],
+        ["xpath=//li[@id='item5d7a489a38']/div/div/div/a/div/img", "xpath:idRelative"],
+        ["xpath=//li[3]/div/div/div/a/div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0089f1e1-8682-4565-b877-df665a7f56dd",
+      "comment": "",
+      "command": "selectWindow",
+      "target": "handle=${win438}",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "b2de2d79-fe75-4f31-b08a-37c14d403e2b",
+    "name": "add-to-cart-functionality-without-specifying-size",
+    "commands": [{
+      "id": "f83c2e78-d65c-444b-bc49-e2ffd252287a",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "62cd5075-71e7-4f3c-aa55-31d5ec42bca5",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x886",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f36b3312-705c-456c-a803-72ea0472ec8c",
+      "comment": "",
+      "command": "click",
+      "target": "id=gh-ac",
+      "targets": [
+        ["id=gh-ac", "id"],
+        ["name=_nkw", "name"],
+        ["css=#gh-ac", "css:finder"],
+        ["xpath=//input[@id='gh-ac']", "xpath:attributes"],
+        ["xpath=//div[@id='gh-ac-box2']/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0ff2c07c-760f-45a1-8e4b-46555bdc25f2",
+      "comment": "",
+      "command": "type",
+      "target": "id=gh-ac",
+      "targets": [
+        ["id=gh-ac", "id"],
+        ["name=_nkw", "name"],
+        ["css=#gh-ac", "css:finder"],
+        ["xpath=//input[@id='gh-ac']", "xpath:attributes"],
+        ["xpath=//div[@id='gh-ac-box2']/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "levis jeans"
+    }, {
+      "id": "9984a87a-9b76-4006-b792-ce04ac634592",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=gh-ac",
+      "targets": [
+        ["id=gh-ac", "id"],
+        ["name=_nkw", "name"],
+        ["css=#gh-ac", "css:finder"],
+        ["xpath=//input[@id='gh-ac']", "xpath:attributes"],
+        ["xpath=//div[@id='gh-ac-box2']/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "f96dc789-a878-4bad-a5ea-ff3543bff0d2",
+      "comment": "",
+      "command": "click",
+      "target": "css=#item5d7a489a38 img",
+      "targets": [
+        ["css=#item5d7a489a38 img", "css:finder"],
+        ["xpath=//img[@alt='LEVI`S 501 JEANS GRADE A VINTAGE STRAIGHT LEG W30 W32 W33 W34 W36 W38 W40']", "xpath:img"],
+        ["xpath=//li[@id='item5d7a489a38']/div/div/div/a/div/img", "xpath:idRelative"],
+        ["xpath=//li[3]/div/div/div/a/div/img", "xpath:position"]
+      ],
+      "value": "",
+      "opensWindow": true,
+      "windowHandleName": "win6459",
+      "windowTimeout": 2000
+    }, {
+      "id": "7b655794-5aac-45f1-b273-134bbb23b9aa",
+      "comment": "",
+      "command": "selectWindow",
+      "target": "handle=${win6459}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c5fb8ce0-a8e1-4867-9651-fde076562c24",
+      "comment": "",
+      "command": "click",
+      "target": "css=.x-atc-action .ux-call-to-action__text",
+      "targets": [
+        ["css=.x-atc-action .ux-call-to-action__text", "css:finder"],
+        ["xpath=//div[@id='mainContent']/div[2]/div/div/div[2]/ul/li[2]/div/a/span/span", "xpath:idRelative"],
+        ["xpath=//li[2]/div/a/span/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fb1b2b7f-0966-45b1-b098-2023f1127b00",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.x-atc-action .ux-call-to-action__text",
+      "targets": [
+        ["css=.x-atc-action .ux-call-to-action__text", "css:finder"],
+        ["xpath=//div[@id='mainContent']/div[2]/div/div/div[2]/ul/li[2]/div/a/span/span", "xpath:idRelative"],
+        ["xpath=//li[2]/div/a/span/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4c8e0c36-0925-45bb-9b33-c613fa7b61cc",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.x-atc-action .ux-call-to-action__text",
+      "targets": [
+        ["css=.x-atc-action .ux-call-to-action__text", "css:finder"],
+        ["xpath=//div[@id='mainContent']/div[2]/div/div/div[2]/ul/li[2]/div/a/span/span", "xpath:idRelative"],
+        ["xpath=//li[2]/div/a/span/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "265fbea0-243b-4cfb-a46f-7cfee51d62fa",
+      "comment": "",
+      "command": "runScript",
+      "target": "window.scrollTo(0,24)",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "138705e1-49ba-44d4-b48b-63e5696f3a42",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.gh-cart-icon > use",
+      "targets": [
+        ["css=.gh-cart-icon > use", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "b04ccb7e-2606-4d70-90eb-f89cc65eacc4",
+      "comment": "",
+      "command": "click",
+      "target": "css=.gh-cart-icon > use",
+      "targets": [
+        ["css=.gh-cart-icon > use", "css:finder"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "789ceef5-7475-4394-b69c-1ae0f486dafd",
+    "name": "add-to-cart-functionality-trying-to-select-unavailable-item",
+    "commands": [{
+      "id": "b4d6a425-b92a-4b5b-870f-fbafa4702abd",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7ac99fbe-6096-49d7-b89c-1ebec2c9bfe3",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x886",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0f633468-5b2b-4604-be23-f6265c2f0798",
+      "comment": "",
+      "command": "click",
+      "target": "id=gh-ac",
+      "targets": [
+        ["id=gh-ac", "id"],
+        ["name=_nkw", "name"],
+        ["css=#gh-ac", "css:finder"],
+        ["xpath=//input[@id='gh-ac']", "xpath:attributes"],
+        ["xpath=//div[@id='gh-ac-box2']/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0a1b29bb-3307-4613-8a69-2286d4fc2bcb",
+      "comment": "",
+      "command": "type",
+      "target": "id=gh-ac",
+      "targets": [
+        ["id=gh-ac", "id"],
+        ["name=_nkw", "name"],
+        ["css=#gh-ac", "css:finder"],
+        ["xpath=//input[@id='gh-ac']", "xpath:attributes"],
+        ["xpath=//div[@id='gh-ac-box2']/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "levis jeans"
+    }, {
+      "id": "2eb79b21-7074-456f-bec0-4a5f1cd4eb09",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=gh-ac",
+      "targets": [
+        ["id=gh-ac", "id"],
+        ["name=_nkw", "name"],
+        ["css=#gh-ac", "css:finder"],
+        ["xpath=//input[@id='gh-ac']", "xpath:attributes"],
+        ["xpath=//div[@id='gh-ac-box2']/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "f79d9497-8852-4a1c-ae97-b9631470b194",
+      "comment": "",
+      "command": "runScript",
+      "target": "window.scrollTo(0,188)",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2f3c882f-442e-440e-ab2f-55a3250372c5",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=#item5d7a489a38 img",
+      "targets": [
+        ["css=#item5d7a489a38 img", "css:finder"],
+        ["xpath=//img[@alt='LEVI`S 501 JEANS GRADE A VINTAGE STRAIGHT LEG W30 W32 W33 W34 W36 W38 W40']", "xpath:img"],
+        ["xpath=//li[@id='item5d7a489a38']/div/div/div/a/div/img", "xpath:idRelative"],
+        ["xpath=//li[3]/div/div/div/a/div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fab2c8d4-d1c4-4c0e-b3e0-dcd256b2e97a",
+      "comment": "",
+      "command": "click",
+      "target": "css=#item5d7a489a38 img",
+      "targets": [
+        ["css=#item5d7a489a38 img", "css:finder"],
+        ["xpath=//img[@alt='LEVI`S 501 JEANS GRADE A VINTAGE STRAIGHT LEG W30 W32 W33 W34 W36 W38 W40']", "xpath:img"],
+        ["xpath=//li[@id='item5d7a489a38']/div/div/div/a/div/img", "xpath:idRelative"],
+        ["xpath=//li[3]/div/div/div/a/div/img", "xpath:position"]
+      ],
+      "value": "",
+      "opensWindow": true,
+      "windowHandleName": "win4367",
+      "windowTimeout": 2000
+    }, {
+      "id": "a3fc42b6-713b-41d3-8ee7-533b316b2e27",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=#item5d7a489a38 img",
+      "targets": [
+        ["css=#item5d7a489a38 img", "css:finder"],
+        ["xpath=//img[@alt='LEVI`S 501 JEANS GRADE A VINTAGE STRAIGHT LEG W30 W32 W33 W34 W36 W38 W40']", "xpath:img"],
+        ["xpath=//li[@id='item5d7a489a38']/div/div/div/a/div/img", "xpath:idRelative"],
+        ["xpath=//li[3]/div/div/div/a/div/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7f3505e8-bf3d-4fc5-8f8e-8daa5bbd4da8",
+      "comment": "",
+      "command": "selectWindow",
+      "target": "handle=${win4367}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2f8b167e-2f0d-411d-ab03-ea6a473a51a2",
+      "comment": "",
+      "command": "click",
+      "target": "id=x-msku__select-box-1000",
+      "targets": [
+        ["id=x-msku__select-box-1000", "id"],
+        ["css=#x-msku__select-box-1000", "css:finder"],
+        ["xpath=//select[@id='x-msku__select-box-1000']", "xpath:attributes"],
+        ["xpath=//div[@id='mainContent']/div/div[5]/div/label/span[2]/select", "xpath:idRelative"],
+        ["xpath=//span[2]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0f9484fc-82a3-4b03-aa6f-a9cfc4a84f5f",
+      "comment": "",
+      "command": "select",
+      "target": "id=x-msku__select-box-1000",
+      "targets": [],
+      "value": "label=Dark Blue"
+    }, {
+      "id": "7d8907c8-b298-4177-a2d9-728c34b091f5",
+      "comment": "",
+      "command": "click",
+      "target": "id=x-msku__select-box-1001",
+      "targets": [
+        ["id=x-msku__select-box-1001", "id"],
+        ["css=#x-msku__select-box-1001", "css:finder"],
+        ["xpath=//select[@id='x-msku__select-box-1001']", "xpath:attributes"],
+        ["xpath=//div[@id='mainContent']/div/div[5]/div[2]/label/span[2]/select", "xpath:idRelative"],
+        ["xpath=//div[2]/label/span[2]/select", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "b20edaa3-bfd8-4ff0-a439-f60c4fe2b1dc",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["f77da5fd-6a4b-421c-b361-cbfc8eb0f7ae"]
+  }],
+  "urls": ["https://www.ebay.ca/"],
+  "plugins": []
+}
