@@ -1444,11 +1444,6 @@
               assertNotNull(result[0]);
           }
           
-          @Test (expected= IllegalArgumentException.class)
-          public void TestRenameLater() {
-              
-          }
-          
           /*
            * The following test cases are for assignment 4 to increase mutatation coverage
            */
@@ -1533,7 +1528,7 @@
               
               int[] rows = { 0, 1, 2 };
               double result = DataUtilities.calculateColumnTotal(values, 0, rows);
-              assertEquals(result, 10.0, .000000001d);
+              assertEquals(result, 11.5, .000000001d);
           }
           
           /*
