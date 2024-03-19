@@ -1,7 +1,6 @@
 package org.jfree.data;
-
-import static org.junit.Assert.*;
-import org.junit.*;
+import org.w3c.dom.ranges.Range;  
+import static org.junit.Assert.*; import org.junit.*;
 
 public class RangeTest {
 
