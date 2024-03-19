@@ -1,7 +1,6 @@
-package org.jfree.data.test;
+package org.jfree.data;
 
 import static org.junit.Assert.*;
-import org.jfree.data.Range;
 import org.junit.*;
 
 public class RangeTest {
@@ -780,6 +779,9 @@ public class RangeTest {
     public void testExpandToInclude_WithValueAboveRange_ShouldExpandRangeToUpperBound() {
         assertEquals(new Range(1, 6), Range.expandToInclude(new Range(1, 4), 6));
     }
+    
+    
+    // add tests for getCentralValue
 
     @Test
     public void testGetCentralValueLargeValues() {
@@ -800,6 +802,7 @@ public class RangeTest {
         assertEquals("Central value of range from -5 to 0 should be -2.5",
                 -2.5, range2.getCentralValue(), 0.0001);
     }
+    
 
     @Test
     public void testGetCentralValueBoundaryCases() {
@@ -852,9 +855,6 @@ public class RangeTest {
     public void testHashCodeWithDistinctRanges() {
         Range range1 = new Range(1, 2);
         Range range2 = new Range(3, 4);
-
-        // This test case assumes that the hashCode for distinct ranges should be
-        // different.
         assertNotEquals("HashCodes should be different for distinct ranges", range1.hashCode(), range2.hashCode());
     }
 
@@ -862,9 +862,6 @@ public class RangeTest {
     public void testHashCodeWithSameRanges() {
         Range range1 = new Range(1, 2);
         Range range2 = new Range(1, 2);
-
-        // This test case assumes that the hashCode for identical ranges should be the
-        // same.
         assertEquals("HashCodes should be equal for identical ranges", range1.hashCode(), range2.hashCode());
     }
 
@@ -872,9 +869,6 @@ public class RangeTest {
     public void testHashCodeWithDifferentLowerBounds() {
         Range range1 = new Range(1, 2);
         Range range2 = new Range(2, 2);
-
-        // This test case ensures that the lower bound is affecting the hashCode as
-        // expected.
         assertNotEquals("HashCodes should be different when only the lower bounds differ", range1.hashCode(),
                 range2.hashCode());
     }
@@ -883,9 +877,6 @@ public class RangeTest {
     public void testHashCodeWithDifferentUpperBounds() {
         Range range1 = new Range(1, 2);
         Range range2 = new Range(1, 3);
-
-        // This test case ensures that the upper bound is affecting the hashCode as
-        // expected.
         assertNotEquals("HashCodes should be different when only the upper bounds differ", range1.hashCode(),
                 range2.hashCode());
     }
@@ -893,35 +884,26 @@ public class RangeTest {
     @Test
     public void testHashCodeWithPositiveInfinity() {
         Range range = new Range(1, Double.POSITIVE_INFINITY);
-
-        // This test ensures the hashCode method can handle special cases like positive
-        // infinity.
         assertNotNull("HashCode should be generated for range with positive infinity", range.hashCode());
     }
 
     @Test
     public void testHashCodeWithNegativeInfinity() {
         Range range = new Range(Double.NEGATIVE_INFINITY, 1);
-
-        // This test ensures the hashCode method can handle special cases like negative
-        // infinity.
         assertNotNull("HashCode should be generated for range with negative infinity", range.hashCode());
     }
 
     @Test
     public void testHashCodeWithNaN() {
         Range range = new Range(Double.NaN, Double.NaN);
-
-        // This test ensures the hashCode method can handle cases where both bounds are
-        // NaN.
         assertNotNull("HashCode should be generated for range with NaN bounds", range.hashCode());
     }
 
     @Test
     public void testExpand_NegativeLowerMargin() {
         Range originalRange = new Range(10, 20);
-        double lowerMargin = -0.1; // This would increase the lower bound
-        double upperMargin = 0.1; // Regular increase of the upper bound
+        double lowerMargin = -0.1; 
+        double upperMargin = 0.1; 
         Range expandedRange = Range.expand(originalRange, lowerMargin, upperMargin);
 
         assertTrue("Lower bound should increase when a negative margin is applied",
@@ -931,8 +913,8 @@ public class RangeTest {
     @Test
     public void testExpand_LargeLowerMargin() {
         Range originalRange = new Range(10, 20);
-        double lowerMargin = 5.0; // Large margin that significantly decreases the lower bound
-        double upperMargin = 0.1; // Regular increase of the upper bound
+        double lowerMargin = 5.0; 
+        double upperMargin = 0.1; 
         Range expandedRange = Range.expand(originalRange, lowerMargin, upperMargin);
 
         assertTrue("Lower bound should decrease significantly for a large positive margin",
@@ -942,8 +924,8 @@ public class RangeTest {
     @Test
     public void testExpand_UpperLessThanLowerAfterExpansion() {
         Range originalRange = new Range(10, 20);
-        double lowerMargin = 1.0; // This will reduce the lower bound by the length of the range
-        double upperMargin = -1.0; // This will reduce the upper bound by the length of the range
+        double lowerMargin = 1.0; 
+        double upperMargin = -1.0; 
 
         Range expandedRange = Range.expand(originalRange, lowerMargin, upperMargin);
         assertTrue("After expansion, upper bound should still be greater or equal to the lower bound",
@@ -952,27 +934,22 @@ public class RangeTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testExpand_NullRange() {
-        Range.expand(null, 0.1, 0.1); // Should throw IllegalArgumentException
+        Range.expand(null, 0.1, 0.1); 
     }
 
     @Test
     public void testExpand_ZeroMargin() {
         Range originalRange = new Range(10, 20);
         Range expandedRange = Range.expand(originalRange, 0, 0);
-
-        // No expansion should occur if margins are zero.
         assertEquals("Range should remain unchanged with zero margins", originalRange, expandedRange);
     }
 
     @Test
     public void testExpand_InvertedBounds() {
         Range originalRange = new Range(10, 20);
-        double lowerMargin = 1.1; // These margins would theoretically invert the bounds
+        double lowerMargin = 1.1; 
         double upperMargin = -0.1;
         Range expandedRange = Range.expand(originalRange, lowerMargin, upperMargin);
-
-        // The implementation prevents inverted bounds, so the result should not have
-        // lower > upper
         assertFalse("Lower bound should not be greater than upper bound after expansion",
                 expandedRange.getLowerBound() > expandedRange.getUpperBound());
     }
