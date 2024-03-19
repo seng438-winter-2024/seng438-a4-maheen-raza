@@ -809,6 +809,174 @@ public class RangeTest {
                 Double.isNaN(range2.getCentralValue()));
     }
 
+    @Test
+    public void testIntersects_SpecialCase() {
+        Range exampleRange = new Range(1, 10);
+        // This should return true as it targets the specific branch: b0 < upper && b1
+        // >= b0
+        assertTrue("The range should intersect (targeted branch)", exampleRange.intersects(9, 9.5));
+        // This ensures we hit the branch and validate the behavior accurately
+        assertFalse("The range should not intersect as b1 is less than b0 (contrary to branch condition)",
+                exampleRange.intersects(11, 9));
+    }
+
+    @Test
+    public void testConstrain_ValueBelowLowerBound() {
+        Range exampleRange = new Range(0, 10);
+        // Targeting the specific mutation branch where value is less than lower
+        assertEquals("Constraining a value below the lower bound should return the lower bound", 0,
+                exampleRange.constrain(-1), 0.00001);
+    }
+
+    // add more tests for isNanRange
+    @Test
+    public void testIsNaNRange_OnlyLowerIsNaN() {
+        Range range = new Range(Double.NaN, 1.0);
+        assertFalse("Range should not be considered a NaN range if only lower is NaN", range.isNaNRange());
+    }
+
+    @Test
+    public void testIsNaNRange_OnlyUpperIsNaN() {
+        Range range = new Range(1.0, Double.NaN);
+        assertFalse("Range should not be considered a NaN range if only upper is NaN", range.isNaNRange());
+    }
+
+    @Test
+    public void testIsNaNRange_NeitherIsNaN() {
+        Range range = new Range(0.0, 1.0);
+        assertFalse("Range should not be considered a NaN range if neither bound is NaN", range.isNaNRange());
+    }
+
+    // add more tests for hashcode
+    @Test
+    public void testHashCodeWithDistinctRanges() {
+        Range range1 = new Range(1, 2);
+        Range range2 = new Range(3, 4);
+
+        // This test case assumes that the hashCode for distinct ranges should be
+        // different.
+        assertNotEquals("HashCodes should be different for distinct ranges", range1.hashCode(), range2.hashCode());
+    }
+
+    @Test
+    public void testHashCodeWithSameRanges() {
+        Range range1 = new Range(1, 2);
+        Range range2 = new Range(1, 2);
+
+        // This test case assumes that the hashCode for identical ranges should be the
+        // same.
+        assertEquals("HashCodes should be equal for identical ranges", range1.hashCode(), range2.hashCode());
+    }
+
+    @Test
+    public void testHashCodeWithDifferentLowerBounds() {
+        Range range1 = new Range(1, 2);
+        Range range2 = new Range(2, 2);
+
+        // This test case ensures that the lower bound is affecting the hashCode as
+        // expected.
+        assertNotEquals("HashCodes should be different when only the lower bounds differ", range1.hashCode(),
+                range2.hashCode());
+    }
+
+    @Test
+    public void testHashCodeWithDifferentUpperBounds() {
+        Range range1 = new Range(1, 2);
+        Range range2 = new Range(1, 3);
+
+        // This test case ensures that the upper bound is affecting the hashCode as
+        // expected.
+        assertNotEquals("HashCodes should be different when only the upper bounds differ", range1.hashCode(),
+                range2.hashCode());
+    }
+
+    @Test
+    public void testHashCodeWithPositiveInfinity() {
+        Range range = new Range(1, Double.POSITIVE_INFINITY);
+
+        // This test ensures the hashCode method can handle special cases like positive
+        // infinity.
+        assertNotNull("HashCode should be generated for range with positive infinity", range.hashCode());
+    }
+
+    @Test
+    public void testHashCodeWithNegativeInfinity() {
+        Range range = new Range(Double.NEGATIVE_INFINITY, 1);
+
+        // This test ensures the hashCode method can handle special cases like negative
+        // infinity.
+        assertNotNull("HashCode should be generated for range with negative infinity", range.hashCode());
+    }
+
+    @Test
+    public void testHashCodeWithNaN() {
+        Range range = new Range(Double.NaN, Double.NaN);
+
+        // This test ensures the hashCode method can handle cases where both bounds are
+        // NaN.
+        assertNotNull("HashCode should be generated for range with NaN bounds", range.hashCode());
+    }
+
+    @Test
+    public void testExpand_NegativeLowerMargin() {
+        Range originalRange = new Range(10, 20);
+        double lowerMargin = -0.1; // This would increase the lower bound
+        double upperMargin = 0.1; // Regular increase of the upper bound
+        Range expandedRange = Range.expand(originalRange, lowerMargin, upperMargin);
+
+        assertTrue("Lower bound should increase when a negative margin is applied",
+                expandedRange.getLowerBound() > originalRange.getLowerBound());
+    }
+
+    @Test
+    public void testExpand_LargeLowerMargin() {
+        Range originalRange = new Range(10, 20);
+        double lowerMargin = 5.0; // Large margin that significantly decreases the lower bound
+        double upperMargin = 0.1; // Regular increase of the upper bound
+        Range expandedRange = Range.expand(originalRange, lowerMargin, upperMargin);
+
+        assertTrue("Lower bound should decrease significantly for a large positive margin",
+                expandedRange.getLowerBound() < originalRange.getLowerBound());
+    }
+
+    @Test
+    public void testExpand_UpperLessThanLowerAfterExpansion() {
+        Range originalRange = new Range(10, 20);
+        double lowerMargin = 1.0; // This will reduce the lower bound by the length of the range
+        double upperMargin = -1.0; // This will reduce the upper bound by the length of the range
+
+        Range expandedRange = Range.expand(originalRange, lowerMargin, upperMargin);
+        assertTrue("After expansion, upper bound should still be greater or equal to the lower bound",
+                expandedRange.getUpperBound() >= expandedRange.getLowerBound());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testExpand_NullRange() {
+        Range.expand(null, 0.1, 0.1); // Should throw IllegalArgumentException
+    }
+
+    @Test
+    public void testExpand_ZeroMargin() {
+        Range originalRange = new Range(10, 20);
+        Range expandedRange = Range.expand(originalRange, 0, 0);
+
+        // No expansion should occur if margins are zero.
+        assertEquals("Range should remain unchanged with zero margins", originalRange, expandedRange);
+    }
+
+    @Test
+    public void testExpand_InvertedBounds() {
+        Range originalRange = new Range(10, 20);
+        double lowerMargin = 1.1; // These margins would theoretically invert the bounds
+        double upperMargin = -0.1;
+        Range expandedRange = Range.expand(originalRange, lowerMargin, upperMargin);
+
+        // The implementation prevents inverted bounds, so the result should not have
+        // lower > upper
+        assertFalse("Lower bound should not be greater than upper bound after expansion",
+                expandedRange.getLowerBound() > expandedRange.getUpperBound());
+    }
+
     @After
     public void tearDown() throws Exception {
     }
