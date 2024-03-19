@@ -385,6 +385,8 @@ public class RangeTest {
                 expandedRange.getLowerBound() <= expandedRange.getUpperBound());
     }
 
+    // Tests for combine
+
     @Test
     public void testCombineFirstRangeIsNull() {
         Range range1 = null;
@@ -465,6 +467,7 @@ public class RangeTest {
         assertFalse("Should not contain NaN", range.contains(Double.NaN));
     }
 
+    // combine
     @Test
     public void testCombineIgnoringNaNNormalRanges() {
         Range range1 = new Range(1, 5);
@@ -473,6 +476,7 @@ public class RangeTest {
         assertEquals("Combining normal ranges fails", new Range(1, 10), combined);
     }
 
+    // test for expand
     @Test
     public void testExpandByZeroMargin() {
         Range range = new Range(10, 20);
@@ -499,6 +503,10 @@ public class RangeTest {
         // Attempting to scale by zero, expecting the method to complete without
         // exception
         Range result = Range.scale(base, 0);
+
+        // Verify the result is as expected under your method's behavior for a zero
+        // factor
+        // This assertion depends on how Range.scale handles a zero factor.
         // If it scales bounds to 0, verify against that expected behavior.
         assertEquals("Scaling with zero factor should result in a range starting at 0", 0, result.getLowerBound(),
                 0.0000001);
@@ -600,6 +608,205 @@ public class RangeTest {
         Range range2 = new Range(-Double.MAX_VALUE, Double.NaN);
         Range combinedRange = Range.combineIgnoringNaN(range1, range2);
         assertEquals(new Range(-Double.MAX_VALUE, Double.MAX_VALUE), combinedRange);
+    }
+
+    // test isNaNRange method
+    @Test
+    public void testIsNaNRangeWithNaN() {
+        Range range = new Range(Double.NaN, Double.NaN);
+        assertTrue(range.isNaNRange()); // Both lower and upper bounds are NaN
+    }
+
+    @Test
+    public void testIsNaNRangeWithFiniteValues() {
+        Range range = new Range(0, 5);
+        assertFalse(range.isNaNRange()); // None of the bounds are NaN
+    }
+
+    @Test
+    public void testIsNaNRangeWithOneNaN() {
+        Range range = new Range(Double.NaN, 5);
+        assertFalse(range.isNaNRange()); // Only one bound is NaN
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testGetUpperBoundWithInvalidRange() {
+        Range range = new Range(5, 3);
+        range.getUpperBound(); // This should throw an IllegalArgumentException
+    }
+
+    // ADDITIONAL TEST CASES TO INCREASE MUTATION COVERAGE
+
+    @Test
+    public void testIntersects_LowerBoundNotRetreieved() {
+        // Create two ranges with different lower bounds
+        Range range1 = new Range(0, 10); // Lower bound: 0
+        Range range2 = new Range(5, 15); // Lower bound: 5
+
+        // Check for intersection
+        boolean result = range1.intersects(range2);
+
+        // Assert that the result is true since the ranges intersect
+        assertTrue("Ranges should intersect", result);
+
+        // Modify range2 to ensure it does not intersect with range1
+        range2 = new Range(-5, 0); // Lower bound: -5
+
+        // Check for intersection
+        result = range1.intersects(range2);
+
+        // Assert that the result is false since the ranges do not intersect
+        assertFalse("Ranges should not intersect", result);
+    }
+
+    @Test
+    public void testIntersects_ChangedConditionalBoundary() {
+        // Create a Range object with a known lower bound
+        Range range = new Range(5.0, 10.0); // Original lower: 5.0
+
+        // Test with b0 less than mutated lower and b1 greater than mutated lower
+        assertFalse("Ranges should not intersect", range.intersects(-10.0, 0.0));
+        assertTrue("Ranges should intersect", range.intersects(-10.0, 20.0));
+    }
+
+    @Test
+    public void testIntersects_NegatedDoubleFieldLower() {
+        // Create a Range object with a known lower bound
+        Range range = new Range(-5.0, 10.0); // Original lower: -5.0
+
+        // Test with b0 less than mutated lower and b1 greater than mutated lower
+        assertTrue("Ranges should not intersect", range.intersects(-10.0, 0.0));
+        assertTrue("Ranges should intersect", range.intersects(-10.0, 20.0));
+    }
+
+    @Test
+    public void testIntersects_NegatedDoubleLocalVariable1() {
+        // Create a Range object with a known lower bound
+        Range range = new Range(5.0, 10.0); // Original lower: 5.0
+        double b0 = -5.0; // Mutated b0
+
+        // Test with mutated b0 less than lower and b1 greater than lower
+        assertFalse("Ranges should not intersect", range.intersects(b0, 0.0));
+        assertTrue("Ranges should intersect", range.intersects(b0, 20.0));
+    }
+
+    @Test
+    public void testIntersects_GreaterThanToGreaterOrEqual() {
+        // Create a Range object with a known upper bound
+        Range range = new Range(0.0, 10.0); // Original upper: 10.0
+
+        // Test with b0 less than or equal to upper and b1 greater than upper
+        assertFalse("Ranges should not intersect", range.intersects(-10.0, 0.0));
+        assertTrue("Ranges should intersect", range.intersects(-10.0, 20.0));
+    }
+
+    @Test
+    public void testExpand_MutationSubtractionWithAddition() {
+        // Create a Range object with known bounds
+        Range range = new Range(0.0, 10.0);
+
+        // Test with lower and upper margins
+        Range expandedRange = Range.expand(range, 0.1, 0.1);
+
+        // The expanded range should have bounds greater than the original range
+        assertFalse("Expanded range should have bounds greater than original",
+                expandedRange.getLowerBound() > range.getLowerBound());
+        assertTrue("Expanded range should have bounds greater than original",
+                expandedRange.getUpperBound() > range.getUpperBound());
+    }
+
+    @Test
+    public void testShift_NotAllowZeroCrossing_DeltaPositive() {
+        Range base = new Range(0, 10);
+        Range shiftedRange = Range.shift(base, 5, false);
+        assertEquals("Lower bound should be shifted correctly",
+                5.0, shiftedRange.getLowerBound(), 0.001);
+        assertEquals("Upper bound should be shifted correctly",
+                15.0, shiftedRange.getUpperBound(), 0.001);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testShift_NullBase() {
+        Range.shift(null, 5, true);
+    }
+
+    @Test
+    public void testShift_NotAllowZeroCrossing_DeltaNegative() {
+        Range base = new Range(0, 10);
+        Range shiftedRange = Range.shift(base, -5, false);
+        assertEquals("Lower bound should be shifted correctly",
+                -5.0, shiftedRange.getLowerBound(), 0.001);
+        assertEquals("Upper bound should be shifted correctly",
+                5.0, shiftedRange.getUpperBound(), 0.001);
+    }
+
+    @Test
+    public void testShift_AllowZeroCrossing_DeltaPositive() {
+        Range base = new Range(-5, 5);
+        Range shiftedRange = Range.shift(base, 10, true);
+        assertEquals("Lower bound should be shifted correctly",
+                5.0, shiftedRange.getLowerBound(), 0.001);
+        assertEquals("Upper bound should be shifted correctly",
+                15.0, shiftedRange.getUpperBound(), 0.001);
+    }
+
+    @Test
+    public void testShift_AllowZeroCrossing_DeltaNegative() {
+        Range base = new Range(-5, 5);
+        Range shiftedRange = Range.shift(base, -10, true);
+        assertEquals("Lower bound should be shifted correctly",
+                -15.0, shiftedRange.getLowerBound(), 0.001);
+        assertEquals("Upper bound should be shifted correctly",
+                -5.0, shiftedRange.getUpperBound(), 0.001);
+    }
+
+    // Test cases for expandToInclude method
+    @Test
+    public void testExpandToInclude_WithNullRange_ShouldExpandRangeToSingleValue() {
+        assertEquals(new Range(5, 5), Range.expandToInclude(null, 5));
+    }
+
+    @Test
+    public void testExpandToInclude_WithValueWithinRange_ShouldExpandRangeToIncludeValue() {
+        assertEquals(new Range(1, 5), Range.expandToInclude(new Range(1, 4), 5));
+    }
+
+    @Test
+    public void testExpandToInclude_WithValueBelowRange_ShouldExpandRangeToLowerBound() {
+        assertEquals(new Range(0, 4), Range.expandToInclude(new Range(1, 4), 0));
+    }
+
+    @Test
+    public void testExpandToInclude_WithValueAboveRange_ShouldExpandRangeToUpperBound() {
+        assertEquals(new Range(1, 6), Range.expandToInclude(new Range(1, 4), 6));
+    }
+
+    @Test
+    public void testGetCentralValueLargeValues() {
+        // Test with large values
+        Range range = new Range(Double.MAX_VALUE / 2, Double.MAX_VALUE);
+        assertEquals("Central value of range with large bounds should be finite",
+                Double.MAX_VALUE * 0.75, range.getCentralValue(), 0.0001);
+    }
+
+    @Test
+    public void testGetCentralValueNegativeAndZeroValues() {
+        // Test with negative and zero values
+        Range range1 = new Range(-10, 10);
+        assertEquals("Central value of range from -10 to 10 should be 0",
+                0.0, range1.getCentralValue(), 0.0001);
+
+        Range range2 = new Range(-5, 0);
+        assertEquals("Central value of range from -5 to 0 should be -2.5",
+                -2.5, range2.getCentralValue(), 0.0001);
+    }
+
+    @Test
+    public void testGetCentralValueBoundaryCases() {
+
+        Range range2 = new Range(Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
+        assertTrue("Central value of range with infinite bounds should be NaN",
+                Double.isNaN(range2.getCentralValue()));
     }
 
     @After
